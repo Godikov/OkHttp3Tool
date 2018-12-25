@@ -7,12 +7,11 @@ v1.1
 
 接入方式：
 
-  allprojects {
+allprojects {
     repositories {
-        ...
         maven { url "https://jitpack.io" }
     }
-  }
+}
   
   并在dependencies中添加以下代码：
   
