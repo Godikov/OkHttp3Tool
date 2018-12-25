@@ -1,9 +1,9 @@
-package com.humu.okhttp3tool.okhttp3;
+package com.humu.myokhttp3.http;
 
 import android.os.Handler;
 import android.os.Looper;
 
-import com.humu.okhttp3tool.utils.JsonUtil;
+import com.humu.myokhttp3.utils.JsonUtil;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;

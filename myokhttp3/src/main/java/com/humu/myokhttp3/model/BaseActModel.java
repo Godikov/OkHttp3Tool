@@ -1,4 +1,4 @@
-package com.humu.okhttp3tool.model;
+package com.humu.myokhttp3.model;
 
 /**
  *  json->对象 的结果类

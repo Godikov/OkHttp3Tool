@@ -1,8 +1,8 @@
-package com.humu.okhttp3tool.okhttp3;
+package com.humu.myokhttp3.http;
 
 import android.text.TextUtils;
 
-import com.humu.okhttp3tool.model.BaseActModel;
+import com.humu.myokhttp3.model.BaseActModel;
 
 /**
  * Created by humu on 2018/9/26.

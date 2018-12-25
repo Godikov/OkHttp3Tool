@@ -1,4 +1,4 @@
-package com.humu.okhttp3tool.okhttp3;
+package com.humu.myokhttp3.http;
 
 import android.net.Uri;
 import android.text.TextUtils;

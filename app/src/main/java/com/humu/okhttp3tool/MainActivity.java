@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
-import com.humu.okhttp3tool.model.BaseActModel;
-import com.humu.okhttp3tool.okhttp3.OkHttpInterface;
-import com.humu.okhttp3tool.okhttp3.OkHttpResponseCallback;
+import com.humu.myokhttp3.model.BaseActModel;
+import com.humu.myokhttp3.http.OkHttpInterface;
+import com.humu.myokhttp3.http.OkHttpResponseCallback;
 
 public class MainActivity extends AppCompatActivity {
 

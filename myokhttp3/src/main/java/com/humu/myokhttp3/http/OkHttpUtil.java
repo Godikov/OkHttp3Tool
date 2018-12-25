@@ -1,4 +1,4 @@
-package com.humu.okhttp3tool.okhttp3;
+package com.humu.myokhttp3.http;
 
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
