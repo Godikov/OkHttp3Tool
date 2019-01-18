@@ -7,8 +7,9 @@ import android.view.View;
 
 import com.humu.myokhttp3.bean.FileBody;
 import com.humu.myokhttp3.bean.MultiFile;
-import com.humu.myokhttp3.model.BaseActModel;
 import com.humu.myokhttp3.http.OkHttpResponseCallback;
+import com.humu.okhttp3tool.http.OkHttpInterface;
+import com.humu.okhttp3tool.model.BaseActModel;
 
 import java.io.File;
 import java.util.ArrayList;

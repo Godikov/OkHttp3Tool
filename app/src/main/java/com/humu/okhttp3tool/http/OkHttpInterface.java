@@ -37,6 +37,7 @@ public class OkHttpInterface {
     public static void getTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
         OkHttpParams params = new OkHttpParams();
         params.setUrl(TEST_URL);
+        //设置为get请求
         params.setGetRequest();
         params.add("key",appKey);
         if(!TextUtils.isEmpty(type)){
@@ -49,14 +50,16 @@ public class OkHttpInterface {
     //文件上传测试
     public static void postFileTest(String tag, File file, OkHttpResponseCallback<BaseActModel> callback){
         OkHttpParams params = new OkHttpParams();
-        params.setUrl("https://mss.tchcn.com/peccancy/getPeccancyByFile");
-        params.putFile("frontFile",file);
+        //TODO 接口路径自己设置
+        params.setUrl("");
+        params.putFile(tag,file);
         OkHttpUtil.getInstance().request(params,callback);
     }
 
     //文件列表上传测试
     public static void postFiles(List<MultiFile> files, OkHttpResponseCallback<BaseActModel> callback){
         OkHttpParams params = new OkHttpParams();
+        //TODO 接口路径自己设置
         params.setUrl("");
         params.putMultiFiles(files);
         OkHttpUtil.getInstance().request(params,callback);

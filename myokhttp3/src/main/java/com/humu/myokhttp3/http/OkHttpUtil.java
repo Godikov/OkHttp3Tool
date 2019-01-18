@@ -1,5 +1,7 @@
 package com.humu.myokhttp3.http;
 
+import android.text.TextUtils;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -44,20 +46,28 @@ public class OkHttpUtil {
 
     private final void post(OkHttpParams params,OkHttpResponseCallback callback){
         OkHttpClient okHttpClient = new OkHttpClient();
+        if(!TextUtils.isEmpty(params.getUrl())){
             Request request = new Request.Builder()
                     .url(params.getUrl())
                     .post(params.getRequestBody())
                     .build();
             okHttpClient.newCall(request).enqueue(callback);
+        }else{
+            //请求地址为空
+        }
     }
 
     private final void get(OkHttpParams params,OkHttpResponseCallback callback){
         OkHttpClient okHttpClient = new OkHttpClient();
-        Request request = new Request.Builder()
-                .url(params.getUriBuilderUrl())
-                .get()
-                .build();
-        okHttpClient.newCall(request).enqueue(callback);
+        if(!TextUtils.isEmpty(params.getUriBuilderUrl())){
+            Request request = new Request.Builder()
+                    .url(params.getUriBuilderUrl())
+                    .get()
+                    .build();
+            okHttpClient.newCall(request).enqueue(callback);
+        }else{
+            //请求地址为空
+        }
     }
 
 }
