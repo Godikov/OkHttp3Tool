@@ -21,6 +21,7 @@ OkHttp3请求工具类。
     }
     
 请求示例：
+新增OkHttpInterface类，并在其中新增方法：
     
         public static void postTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
             OkHttpParams params = new OkHttpParams();
