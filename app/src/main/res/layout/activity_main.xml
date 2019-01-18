@@ -20,5 +20,16 @@
         android:text="get测试"
         android:onClick="getTest"/>
 
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="post File测试"
+        android:onClick="postFileTest"/>
+
+    <Button
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="post文件列表上传测试"
+        android:onClick="postFilesTest"/>
 
 </LinearLayout>

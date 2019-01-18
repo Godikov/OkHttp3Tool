@@ -1,4 +1,4 @@
-package com.humu.myokhttp3.model;
+package com.humu.okhttp3tool.model;
 
 /**
  *  json->对象 的结果类
@@ -8,6 +8,6 @@ package com.humu.myokhttp3.model;
 
 public class BaseActModel {
 
-
+    
 
 }

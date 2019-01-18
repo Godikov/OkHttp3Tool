@@ -46,18 +46,19 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
     }
 
     @Override
-    public void onFailure(Call call, IOException e) {
+    public void onFailure(final Call call, IOException e) {
         if(this.isMainLooper()){
             //此处可以做接口请求失败的公共处理，如失败提醒等。
+            failure(call);
         }else{
             this.handler.post(new Runnable() {
                 @Override
                 public void run() {
                     //此处可以做接口请求失败的公共处理，如失败提醒等。
+                    failure(call);
                 }
             });
         }
-        failure(call);
         finish();
     }
 
