@@ -15,6 +15,8 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import okhttp3.Call;
+
 public class MainActivity extends AppCompatActivity {
 
     private final String TAG = getClass().getSimpleName();
@@ -26,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void postTest(View view) {
+
         OkHttpInterface.postTest("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback<BaseActModel>() {
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
@@ -36,9 +39,15 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            public void failure(Call call) {
+                super.failure(call);
+                //接口请求失败
+            }
+
+            @Override
             public void finish() {
                 super.finish();
-                //失败回调
+                //接口请求结束回调
             }
         });
     }

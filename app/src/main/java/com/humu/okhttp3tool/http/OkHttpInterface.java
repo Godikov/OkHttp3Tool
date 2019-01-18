@@ -27,9 +27,7 @@ public class OkHttpInterface {
         OkHttpParams params = new OkHttpParams();
         params.setUrl(TEST_URL);
         params.add("key",appKey);
-        if(!TextUtils.isEmpty(type)){
-            params.add("type",type);
-        }
+        params.add("type",type);
         OkHttpUtil.getInstance().request(params,callback);
     }
 
@@ -39,6 +37,7 @@ public class OkHttpInterface {
         params.setUrl(TEST_URL);
         //设置为get请求
         params.setGetRequest();
+        params.setPostRequest();
         params.add("key",appKey);
         if(!TextUtils.isEmpty(type)){
             params.add("type",type);
