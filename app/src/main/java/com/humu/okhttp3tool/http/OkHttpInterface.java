@@ -1,8 +1,7 @@
 package com.humu.okhttp3tool.http;
 
-import android.text.TextUtils;
-
 import com.humu.myokhttp3.bean.MultiFile;
+import com.humu.myokhttp3.http.AppRequestParams;
 import com.humu.myokhttp3.http.OkHttpParams;
 import com.humu.myokhttp3.http.OkHttpResponseCallback;
 import com.humu.myokhttp3.http.OkHttpUtil;
@@ -24,16 +23,27 @@ public class OkHttpInterface {
 
     //post请求测试
     public static void postTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
-        OkHttpParams params = new OkHttpParams();
+        AppRequestParams.getInstance()
+                .url(TEST_URL)
+                .add("key",appKey)
+                .add("type",type)
+                .request(callback);
+/*        OkHttpParams params = new OkHttpParams();
         params.setUrl(TEST_URL);
         params.add("key",appKey);
         params.add("type",type);
-        OkHttpUtil.getInstance().request(params,callback);
+        OkHttpUtil.getInstance().request(params,callback);*/
     }
 
     //get请求测试
     public static void getTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
-        OkHttpParams params = new OkHttpParams();
+        AppRequestParams.getInstance()
+                .url(TEST_URL)
+                .setGetRequest()
+                .add("key",appKey)
+                .add("type",type)
+                .request(callback);
+/*        OkHttpParams params = new OkHttpParams();
         params.setUrl(TEST_URL);
         //设置为get请求
         params.setGetRequest();
@@ -42,7 +52,7 @@ public class OkHttpInterface {
         if(!TextUtils.isEmpty(type)){
             params.add("type",type);
         }
-        OkHttpUtil.getInstance().request(params,callback);
+        OkHttpUtil.getInstance().request(params,callback);*/
     }
 
 
