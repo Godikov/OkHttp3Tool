@@ -46,20 +46,8 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
     }
 
     @Override
-    public void onFailure(final Call call, IOException e) {
-        if(this.isMainLooper()){
-            //此处可以做接口请求失败的公共处理，如失败提醒等。
-            failure(call);
-        }else{
-            this.handler.post(new Runnable() {
-                @Override
-                public void run() {
-                    //此处可以做接口请求失败的公共处理，如失败提醒等。
-                    failure(call);
-                }
-            });
-        }
-        finish();
+    public void onFailure(final Call call, final IOException e) {
+        onFinish();
     }
 
     @Override
@@ -76,14 +64,14 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
                 //bodyStr:json字符串，方便打印
                 //model：json转对象之后的对象，方便对数据操作
                 onSuccess(bodyStr,model);
-                finish();
+                onFinish();
             }else{
                 this.handler.post(new Runnable() {
                     @Override
                     public void run() {
                         //此处可以做接口请求成功的公共处理，如进度条消失等。
                         OkHttpResponseCallback.this.onSuccess(bodyStr,model);
-                        finish();
+                        onFinish();
                     }
                 });
             }
@@ -107,11 +95,7 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     public abstract void onSuccess(String bodyStr,T actModel);
 
-    public void failure(Call call){
-        //接口失败
-    }
-
-    public void finish(){
+    public void onFinish(){
         //自定义接口调完之后的逻辑,无论是失败还是成功都会最终执行。
     }
 

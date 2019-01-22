@@ -12,6 +12,7 @@ import com.humu.okhttp3tool.http.OkHttpInterface;
 import com.humu.okhttp3tool.model.BaseActModel;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,14 +40,14 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
-            public void failure(Call call) {
-                super.failure(call);
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
                 //接口请求失败
             }
 
             @Override
-            public void finish() {
-                super.finish();
+            public void onFinish() {
+                super.onFinish();
                 //接口请求结束回调
             }
         });

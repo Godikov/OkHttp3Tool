@@ -29,12 +29,12 @@ public class OkHttpParams {
     public static final String POST = "post";
     public static final String GET = "get";
 
-    public static final String FORM = "form";
-    public static final String MULTI = "multi";
+    public static final String FORM = "form"; //普通参数请求
+    public static final String MULTI = "multi"; //包含文件的请求
 
     private String requestType = POST; //默认是post请求
 
-    private String paramType = FORM; //默认只是表单请求
+    private String paramType = FORM; //默认只是普通请求
 
     public OkHttpParams(){
         builder = new FormBody.Builder();
