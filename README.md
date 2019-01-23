@@ -12,18 +12,14 @@ OkHttp3请求工具类。
 
 示例：
 
-    public static void getAccessToken(OkHttpResponseCallback<AccessTokenActModel> callback){
-        AppRequestParams.getInstance().url(Urls.GET_ACCESS_TOKEN).request(callback);
-    }
+    AppRequestParams.getInstance().url(Urls.GET_ACCESS_TOKEN).request(callback);
     
 带参数：
 
-        public static void getCameras(String supplier_id,String location_id,OkHttpResponseCallback<CamerasActModel> callback){
                  AppRequestParams.getInstance().url(Urls.GET_CAMERA_LIST2)
                  .add("location_id",location_id)
                  .add("supplier_id",supplier_id)
                  .request(callback);
-        }
 
 集成方式：
     Step 1. Add the JitPack repository to your build file
