@@ -3,7 +3,14 @@ OkHttp3请求工具类。
 
 个人封装的一个方便工作使用的OkHttp3轮子，目前可以使用post/get请求，包括文件/多文件上传。
 
-2019/1/22更新 新增AppRequestParams类，链式写法，更简洁，示例：
+2019/1/22更新 新增AppRequestParams类，链式写法，更简洁：
+
+    dependencies {
+        ...
+        implementation 'com.github.Godikov:OkHttp3Tool:v1.3'
+    }
+
+示例：
 
     public static void getAccessToken(OkHttpResponseCallback<AccessTokenActModel> callback){
         AppRequestParams.getInstance().url(Urls.GET_ACCESS_TOKEN).request(callback);
