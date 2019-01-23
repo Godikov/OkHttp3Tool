@@ -44,6 +44,11 @@ public class AppRequestParams {
         multiBuilder.setType(MultipartBody.FORM);
     }
 
+    public static AppRequestParams getInstance(){
+        return new AppRequestParams();
+    }
+
+/*
     public static AppRequestParams getInstance() {
         if (mInstance == null) {
             synchronized (AppRequestParams.class) {
@@ -54,11 +59,12 @@ public class AppRequestParams {
         }
         return mInstance;
     }
+*/
 
     public AppRequestParams url(String url){
         mUrl = url;
         uriBuilder = Uri.parse(url).buildUpon();
-        return mInstance;
+        return this;
     }
 
     /**
@@ -66,7 +72,7 @@ public class AppRequestParams {
      */
     public AppRequestParams setPostRequest(){
         requestType = POST;
-        return mInstance;
+        return this;
     }
 
     /**
@@ -74,7 +80,7 @@ public class AppRequestParams {
      */
     public AppRequestParams setGetRequest(){
         requestType = GET;
-        return mInstance;
+        return this;
     }
 
     /**
@@ -88,7 +94,7 @@ public class AppRequestParams {
         }else if(GET.equals(requestType)){
             addParam(tag,value);
         }
-        return mInstance;
+        return this;
     }
 
     /**
@@ -119,7 +125,7 @@ public class AppRequestParams {
         if(!MULTI.equals(paramType)){
             paramType = MULTI;
         }
-        return mInstance;
+        return this;
     }
 
     /**
@@ -133,7 +139,7 @@ public class AppRequestParams {
                 putFile(multiFile.getKey(),fileBody.getFile());
             }
         }
-        return mInstance;
+        return this;
     }
 
     /**

@@ -43,20 +43,26 @@ public class OkHttpInterface {
 
     //文件上传测试
     public static void postFileTest(String tag, File file, OkHttpResponseCallback<BaseActModel> callback){
-        OkHttpParams params = new OkHttpParams();
+        AppRequestParams.getInstance().url("https://mss.tchcn.com/peccancy/getPeccancyByFile")
+                .putFile(tag,file)
+                .request(callback);
+/*        OkHttpParams params = new OkHttpParams();
         //TODO 接口路径自己设置
-        params.setUrl("");
+        params.setUrl("https://mss.tchcn.com/peccancy/getPeccancyByFile");
         params.putFile(tag,file);
-        OkHttpUtil.getInstance().request(params,callback);
+        OkHttpUtil.getInstance().request(params,callback);*/
     }
 
     //文件列表上传测试
     public static void postFiles(List<MultiFile> files, OkHttpResponseCallback<BaseActModel> callback){
-        OkHttpParams params = new OkHttpParams();
+        AppRequestParams.getInstance().url("https://mss.tchcn.com/face/searchUserByFaceImages")
+                .putMultiFiles(files)
+                .request(callback);
+/*        OkHttpParams params = new OkHttpParams();
         //TODO 接口路径自己设置
-        params.setUrl("");
+        params.setUrl("https://mss.tchcn.com/face/searchUserByFaceImages");
         params.putMultiFiles(files);
-        OkHttpUtil.getInstance().request(params,callback);
+        OkHttpUtil.getInstance().request(params,callback);*/
     }
 
 }
