@@ -28,11 +28,6 @@ public class OkHttpInterface {
                 .add("key",appKey)
                 .add("type",type)
                 .request(callback);
-/*        OkHttpParams params = new OkHttpParams();
-        params.setUrl(TEST_URL);
-        params.add("key",appKey);
-        params.add("type",type);
-        OkHttpUtil.getInstance().request(params,callback);*/
     }
 
     //get请求测试
@@ -43,16 +38,6 @@ public class OkHttpInterface {
                 .add("key",appKey)
                 .add("type",type)
                 .request(callback);
-/*        OkHttpParams params = new OkHttpParams();
-        params.setUrl(TEST_URL);
-        //设置为get请求
-        params.setGetRequest();
-        params.setPostRequest();
-        params.add("key",appKey);
-        if(!TextUtils.isEmpty(type)){
-            params.add("type",type);
-        }
-        OkHttpUtil.getInstance().request(params,callback);*/
     }
 
 

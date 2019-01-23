@@ -23,20 +23,20 @@ import okhttp3.RequestBody;
 public class AppRequestParams {
 
     private static AppRequestParams mInstance;
-    private static String mUrl;
-    private static Uri.Builder uriBuilder;
-    private static FormBody.Builder builder = null;
-    private static MultipartBody.Builder multiBuilder = null;
+    private String mUrl;
+    private Uri.Builder uriBuilder;
+    private FormBody.Builder builder = null;
+    private MultipartBody.Builder multiBuilder = null;
 
-    private static final String POST = "post";
-    private static final String GET = "get";
+    private final String POST = "post";
+    private final String GET = "get";
 
-    private static final String FORM = "form"; //普通参数请求
-    private static final String MULTI = "multi"; //包含文件的请求
+    private final String FORM = "form"; //普通参数请求
+    private final String MULTI = "multi"; //包含文件的请求
 
-    private static String requestType = POST; //默认是post请求
+    private String requestType = POST; //默认是post请求
 
-    private static String paramType = FORM; //默认只是普通请求
+    private String paramType = FORM; //默认只是普通请求
 
     private AppRequestParams(){
         builder = new FormBody.Builder();
@@ -55,7 +55,7 @@ public class AppRequestParams {
         return mInstance;
     }
 
-    public static AppRequestParams url(String url){
+    public AppRequestParams url(String url){
         mUrl = url;
         uriBuilder = Uri.parse(url).buildUpon();
         return mInstance;
@@ -64,7 +64,7 @@ public class AppRequestParams {
     /**
      * 设置为post请求
      */
-    public static AppRequestParams setPostRequest(){
+    public AppRequestParams setPostRequest(){
         requestType = POST;
         return mInstance;
     }
@@ -72,7 +72,7 @@ public class AppRequestParams {
     /**
      * 设置为get请求
      */
-    public static AppRequestParams setGetRequest(){
+    public AppRequestParams setGetRequest(){
         requestType = GET;
         return mInstance;
     }
@@ -82,7 +82,7 @@ public class AppRequestParams {
      * @param tag
      * @param value
      */
-    public static AppRequestParams add(String tag, String value){
+    public AppRequestParams add(String tag, String value){
         if(POST.equals(requestType)){
             put(tag,value);
         }else if(GET.equals(requestType)){
@@ -94,7 +94,7 @@ public class AppRequestParams {
     /**
      * post请求添加参数
      * */
-    private static void put(String tag, String value){
+    private void put(String tag, String value){
         if(builder != null){
             if(!TextUtils.isEmpty(tag) && !TextUtils.isEmpty(value)){
                 builder.add(tag,value);
@@ -110,7 +110,7 @@ public class AppRequestParams {
     /**
      * post请求添加文件
      * */
-    public static AppRequestParams putFile(String tag, File file){
+    public AppRequestParams putFile(String tag, File file){
         String TYPE = "application/octet-stream";
         RequestBody fileBody = RequestBody.create(MediaType.parse(TYPE),file);
         multiBuilder
@@ -126,7 +126,7 @@ public class AppRequestParams {
      * post上传文件列表
      * @param multiFiles
      */
-    public static AppRequestParams putMultiFiles(List<MultiFile> multiFiles){
+    public AppRequestParams putMultiFiles(List<MultiFile> multiFiles){
         if(multiFiles != null && multiFiles.size() > 0){
             for(MultiFile multiFile: multiFiles){
                 FileBody fileBody = multiFile.getFileBody();
@@ -139,12 +139,12 @@ public class AppRequestParams {
     /**
      * get请求添加参数
      * */
-    private static void addParam(String tag,String value){
+    private void addParam(String tag,String value){
         uriBuilder.appendQueryParameter(tag, value);
         multiBuilder.addFormDataPart(tag,value);
     }
 
-    private static RequestBody getRequestBody(){
+    private RequestBody getRequestBody(){
         if(FORM.equals(paramType)){
             if(builder != null){
                 return builder.build();
