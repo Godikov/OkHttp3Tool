@@ -17,7 +17,7 @@ OkHttp3请求工具类。
     Step 2. Add the dependency:
     dependencies {
         ...
-        implementation 'com.github.Godikov:OkHttp3Tool:v1.0.1'
+        implementation 'com.github.Godikov:OkHttp3Tool:v1.0.2'
     }
     
 
