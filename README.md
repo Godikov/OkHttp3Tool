@@ -3,6 +3,27 @@ OkHttp3请求工具类。
 
 个人封装的一个方便工作使用的OkHttp3轮子，目前可以使用post/get请求，包括文件/多文件上传。
 
+2019/1/22更新 新增AppRequestParams类，链式写法，更简洁：
+
+    dependencies {
+        ...
+        implementation 'com.github.Godikov:OkHttp3Tool:v1.3'
+    }
+
+示例：
+
+    AppRequestParams.getInstance().url(Urls.GET_ACCESS_TOKEN).request(callback);
+    
+带参数：
+
+                 AppRequestParams.getInstance().url(Urls.GET_CAMERA_LIST2)
+                 .add("location_id",location_id)
+                 .add("supplier_id",supplier_id)
+                 .request(callback);
+------------------------------------------------------------------------------------------------------------------------                 
+初版:
+
+
 集成方式：
     Step 1. Add the JitPack repository to your build file
     Add it in your root build.gradle at the end of repositories:
