@@ -20,6 +20,8 @@ OkHttp3请求工具类。
                  .add("location_id",location_id)
                  .add("supplier_id",supplier_id)
                  .request(callback);
+初版：
+
 
 集成方式：
     Step 1. Add the JitPack repository to your build file
