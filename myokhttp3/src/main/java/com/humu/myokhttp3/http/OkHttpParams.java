@@ -25,11 +25,11 @@ public class OkHttpParams {
     private String url = "";
     private Uri.Builder uriBuilder;
 
-    public final String POST = "post";
-    public final String GET = "get";
+    private final String POST = "post";
+    private final String GET = "get";
 
-    public final String FORM = "form"; //普通参数请求
-    public final String MULTI = "multi"; //包含文件的请求
+    private final String FORM = "form"; //普通参数请求
+    private final String MULTI = "multi"; //包含文件的请求
 
     private String requestType = POST; //默认是post请求
 
