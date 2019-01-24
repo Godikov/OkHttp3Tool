@@ -18,7 +18,6 @@ import okhttp3.RequestBody;
  * 请求参数设置工具,2019/1/22使用AppRequestParams类替代，可使用链式写法，更加简洁。
  * Created by humu on 2018/9/27.
  */
-@Deprecated
 public class OkHttpParams {
 
     private final FormBody.Builder builder;
