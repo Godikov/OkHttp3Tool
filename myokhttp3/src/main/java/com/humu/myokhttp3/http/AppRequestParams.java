@@ -2,19 +2,23 @@ package com.humu.myokhttp3.http;
 
 import android.net.Uri;
 import android.text.TextUtils;
+import android.util.Log;
 
 import com.humu.myokhttp3.bean.FileBody;
 import com.humu.myokhttp3.bean.MultiFile;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.List;
 
 import okhttp3.FormBody;
+import okhttp3.Interceptor;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.RequestBody;
+import okhttp3.Response;
 
 /** 链式请求方式
  * Created by humu on 2019/1/22.
@@ -44,11 +48,6 @@ public class AppRequestParams {
         multiBuilder.setType(MultipartBody.FORM);
     }
 
-    public static AppRequestParams getInstance(){
-        return new AppRequestParams();
-    }
-
-/*
     public static AppRequestParams getInstance() {
         if (mInstance == null) {
             synchronized (AppRequestParams.class) {
@@ -59,12 +58,11 @@ public class AppRequestParams {
         }
         return mInstance;
     }
-*/
 
     public AppRequestParams url(String url){
         mUrl = url;
         uriBuilder = Uri.parse(url).buildUpon();
-        return this;
+        return mInstance;
     }
 
     /**
@@ -72,7 +70,7 @@ public class AppRequestParams {
      */
     public AppRequestParams setPostRequest(){
         requestType = POST;
-        return this;
+        return mInstance;
     }
 
     /**
@@ -80,7 +78,7 @@ public class AppRequestParams {
      */
     public AppRequestParams setGetRequest(){
         requestType = GET;
-        return this;
+        return mInstance;
     }
 
     /**
@@ -94,7 +92,7 @@ public class AppRequestParams {
         }else if(GET.equals(requestType)){
             addParam(tag,value);
         }
-        return this;
+        return mInstance;
     }
 
     /**
@@ -119,13 +117,11 @@ public class AppRequestParams {
     public AppRequestParams putFile(String tag, File file){
         String TYPE = "application/octet-stream";
         RequestBody fileBody = RequestBody.create(MediaType.parse(TYPE),file);
-        multiBuilder
-                .addFormDataPart(tag,file.getName(),fileBody)
-                .build();
+        multiBuilder.addFormDataPart(tag,file.getName(),fileBody);
         if(!MULTI.equals(paramType)){
             paramType = MULTI;
         }
-        return this;
+        return mInstance;
     }
 
     /**
@@ -139,7 +135,7 @@ public class AppRequestParams {
                 putFile(multiFile.getKey(),fileBody.getFile());
             }
         }
-        return this;
+        return mInstance;
     }
 
     /**

@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
 
         MultiFile multiFile2 = new MultiFile();
         multiFile2.setKey("face_images");
-        FileBody fileBody2 = new FileBody(new File("/storage/emulated/0/Downloads/timg.jpg"));
+        FileBody fileBody2 = new FileBody(new File("/storage/emulated/0/Downloads/timg2.jpg"));
         multiFile2.setFileBody(fileBody2);
 
         multiFiles.add(multiFile);
