@@ -49,7 +49,8 @@ public class AppRequestParams {
     }
 
     public static AppRequestParams getInstance() {
-        return new AppRequestParams();
+        mInstance = new AppRequestParams();
+        return mInstance;
 /*        if (mInstance == null) {
             synchronized (AppRequestParams.class) {
                 if (mInstance == null) {
@@ -117,8 +118,7 @@ public class AppRequestParams {
      * */
     public AppRequestParams putFile(String tag, File file){
         String TYPE = "application/octet-stream";
-        RequestBody fileBody = RequestBody.create(MediaType.parse(TYPE),file);
-        multiBuilder.addFormDataPart(tag,file.getName(),fileBody);
+        multiBuilder.addFormDataPart(tag,file.getName(),RequestBody.create(MediaType.parse(TYPE),file));
         if(!MULTI.equals(paramType)){
             paramType = MULTI;
         }
