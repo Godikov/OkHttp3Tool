@@ -165,11 +165,13 @@ public class AppRequestParams {
      * @param callback 回调
      */
     public final void request(OkHttpResponseCallback callback){
-        if(POST.equals(requestType)){
-            //post请求
-            post(callback);
-        }else{
-            get(callback);
+        synchronized (AppRequestParams.class){
+            if(POST.equals(requestType)){
+                //post请求
+                post(callback);
+            }else{
+                get(callback);
+            }
         }
     }
 
