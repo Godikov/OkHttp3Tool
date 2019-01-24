@@ -49,14 +49,15 @@ public class AppRequestParams {
     }
 
     public static AppRequestParams getInstance() {
-        if (mInstance == null) {
+        return new AppRequestParams();
+/*        if (mInstance == null) {
             synchronized (AppRequestParams.class) {
                 if (mInstance == null) {
                     mInstance = new AppRequestParams();
                 }
             }
         }
-        return mInstance;
+        return mInstance;*/
     }
 
     public AppRequestParams url(String url){
