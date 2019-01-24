@@ -29,8 +29,8 @@ public class AppRequestParams {
     private static AppRequestParams mInstance;
     private String mUrl;
     private Uri.Builder uriBuilder;
-    private FormBody.Builder builder = null;
-    private MultipartBody.Builder multiBuilder = null;
+    private static FormBody.Builder builder = null;
+    private static MultipartBody.Builder multiBuilder = null;
 
     private final String POST = "post";
     private final String GET = "get";
@@ -49,16 +49,17 @@ public class AppRequestParams {
     }
 
     public static AppRequestParams getInstance() {
-        mInstance = new AppRequestParams();
-        return mInstance;
-/*        if (mInstance == null) {
+        if (mInstance == null) {
             synchronized (AppRequestParams.class) {
                 if (mInstance == null) {
                     mInstance = new AppRequestParams();
                 }
             }
         }
-        return mInstance;*/
+        builder = new FormBody.Builder();
+        multiBuilder = new MultipartBody.Builder();
+        multiBuilder.setType(MultipartBody.FORM);
+        return mInstance;
     }
 
     public AppRequestParams url(String url){
