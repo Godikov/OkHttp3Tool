@@ -1,7 +1,6 @@
 package com.humu.okhttp3tool.http;
 
 import com.humu.myokhttp3.bean.MultiFile;
-import com.humu.myokhttp3.http.AppRequestParams;
 import com.humu.myokhttp3.http.OkHttpParams;
 import com.humu.myokhttp3.http.OkHttpResponseCallback;
 import com.humu.myokhttp3.http.OkHttpUtil;
@@ -23,46 +22,40 @@ public class OkHttpInterface {
 
     //post请求测试
     public static void postTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
-        AppRequestParams.getInstance()
-                .url(TEST_URL)
-                .add("key",appKey)
-                .add("type",type)
-                .request(callback);
+        OkHttpParams params = new OkHttpParams();
+        params.setUrl(TEST_URL);
+        params.add("key",appKey);
+        params.add("type",type);
+        OkHttpUtil.getInstance().request(params,callback);
     }
 
     //get请求测试
     public static void getTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
-        AppRequestParams.getInstance()
-                .url(TEST_URL)
-                .setGetRequest()
-                .add("key",appKey)
-                .add("type",type)
-                .request(callback);
+        OkHttpParams params = new OkHttpParams();
+        params.setUrl(TEST_URL);
+        params.setGetRequest();
+        params.add("key",appKey);
+        params.add("type",type);
+        OkHttpUtil.getInstance().request(params,callback);
     }
 
 
     //文件上传测试
     public static void postFileTest(String tag, File file, OkHttpResponseCallback<BaseActModel> callback){
-        AppRequestParams.getInstance().url("https://mss.tchcn.com/peccancy/getPeccancyByFile")
-                .putFile(tag,file)
-                .request(callback);
-/*        OkHttpParams params = new OkHttpParams();
+        OkHttpParams params = new OkHttpParams();
         //TODO 接口路径自己设置
         params.setUrl("https://mss.tchcn.com/peccancy/getPeccancyByFile");
         params.putFile(tag,file);
-        OkHttpUtil.getInstance().request(params,callback);*/
+        OkHttpUtil.getInstance().request(params,callback);
     }
 
     //文件列表上传测试
     public static void postFiles(List<MultiFile> files, OkHttpResponseCallback<BaseActModel> callback){
-        AppRequestParams.getInstance().url("https://mss.tchcn.com/face/searchUserByFaceImages")
-                .putMultiFiles(files)
-                .request(callback);
-/*        OkHttpParams params = new OkHttpParams();
+        OkHttpParams params = new OkHttpParams();
         //TODO 接口路径自己设置
         params.setUrl("https://mss.tchcn.com/face/searchUserByFaceImages");
         params.putMultiFiles(files);
-        OkHttpUtil.getInstance().request(params,callback);*/
+        OkHttpUtil.getInstance().request(params,callback);
     }
 
 }

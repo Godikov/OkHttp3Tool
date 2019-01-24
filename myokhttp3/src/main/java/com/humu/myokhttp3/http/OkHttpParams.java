@@ -15,7 +15,7 @@ import okhttp3.MultipartBody;
 import okhttp3.RequestBody;
 
 /**
- * 请求参数设置工具,2019/1/22使用AppRequestParams类替代，可使用链式写法，更加简洁。
+ * 请求参数设置工具
  * Created by humu on 2018/9/27.
  */
 public class OkHttpParams {
@@ -25,11 +25,11 @@ public class OkHttpParams {
     private String url = "";
     private Uri.Builder uriBuilder;
 
-    public static final String POST = "post";
-    public static final String GET = "get";
+    public final String POST = "post";
+    public final String GET = "get";
 
-    public static final String FORM = "form"; //普通参数请求
-    public static final String MULTI = "multi"; //包含文件的请求
+    public final String FORM = "form"; //普通参数请求
+    public final String MULTI = "multi"; //包含文件的请求
 
     private String requestType = POST; //默认是post请求
 
@@ -123,9 +123,7 @@ public class OkHttpParams {
     public void putFile(String tag, File file){
         String TYPE = "application/octet-stream";
         RequestBody fileBody = RequestBody.create(MediaType.parse(TYPE),file);
-                multiBuilder
-                .addFormDataPart(tag,file.getName(),fileBody)
-                .build();
+                multiBuilder.addFormDataPart(tag,file.getName(),fileBody);
         if(!MULTI.equals(paramType)){
             paramType = MULTI;
         }
