@@ -15,28 +15,12 @@ OkHttp3请求工具类。
     }
   
     Step 2. Add the dependency:
+    
     dependencies {
         ...
-        implementation 'com.github.Godikov:OkHttp3Tool:v1.0.2'
+        implementation 'com.github.Godikov:OkHttp3Tool:v1.1.0'
     }
     
-
-2019/1/22更新 新增AppRequestParams类，链式写法，更简洁,
-
-示例：
-
-    AppRequestParams.getInstance().url(Urls.GET_ACCESS_TOKEN).request(callback);
-    
-带参数：
-
-                 AppRequestParams.getInstance().url(Urls.GET_CAMERA_LIST2)
-                 .add("location_id",location_id)
-                 .add("supplier_id",supplier_id)
-                 .request(callback);
-                 
-------------------------------------------------------------------------------------------------------------------------                 
-初版:
-
     
 请求示例：
 创建一个OkHttpInterface类，并在其中新增方法：
