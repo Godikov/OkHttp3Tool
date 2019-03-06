@@ -26,13 +26,11 @@ OkHttp3请求工具类。
 
 2019/3/6 更新OkHttp3Tool类，链式请求：
     
-    public static void postTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
         OKHttp3Tool.getInstance()
                 .url(TEST_URL)
                 .add("key",appKey)
                 .add("type",type)
                 .send(callback);
-    }
 
 创建一个OkHttpInterface类，并在其中新增方法：
     
