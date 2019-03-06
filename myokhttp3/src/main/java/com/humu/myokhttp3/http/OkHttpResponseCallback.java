@@ -2,6 +2,7 @@ package com.humu.myokhttp3.http;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.humu.myokhttp3.utils.JsonUtil;
@@ -86,6 +87,21 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
                     }
                 });
             }
+        }else{
+            //非json格式数据
+            //回调格式错误方法
+            if(this.isMainLooper()){
+                onFormatError();
+                onFinish();
+            }else{
+                this.handler.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        onFormatError();
+                        onFinish();
+                    }
+                });
+            }
         }
     }
 
@@ -116,6 +132,10 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     public void onConnectFail(){
         //连接异常
+    }
+
+    public void onFormatError(){
+        //返回数据格式错误(非json格式数据)
     }
 
 }
