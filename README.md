@@ -35,9 +35,9 @@ OkHttp3请求工具类。
         }
         
 获取回调结果示例:
+
     
         OkHttpInterface.postTest("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback<BaseActModel>() {
-        
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
                 //接口回调成功
@@ -47,18 +47,31 @@ OkHttp3请求工具类。
             }
 
             @Override
-            public void failure(Call call) {
-                super.failure(call);
+            public void onTimeOut() {
+                super.onTimeOut();
+                //连接超时
+            }
+
+            @Override
+            public void onConnectFail() {
+                super.onConnectFail();
+                //连接失败
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
                 //接口请求失败
             }
 
             @Override
-            public void finish() {
-                super.finish();
+            public void onFinish() {
+                super.onFinish();
                 //接口请求结束回调
             }
-            
         });
+
+
 
     
 用法介绍：
