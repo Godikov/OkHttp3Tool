@@ -16,6 +16,7 @@ import okhttp3.RequestBody;
 
 /**
  * 请求参数设置工具
+ * 推荐使用OkHttp3Tool类实现链式请求。
  * Created by humu on 2018/9/27.
  */
 public class OkHttpParams {

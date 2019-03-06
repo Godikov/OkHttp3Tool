@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void postFileTest(View view) {
-        OkHttpInterface.postFileTest("frontFile", new File("/storage/emulated/0/Downloads/timg.jpg"), new OkHttpResponseCallback<BaseActModel>() {
+        OkHttpInterface.postFileTest("frontFile", new File("/storage/emulated/0/Huawei/Themes/HWWallpapers/800003362.jpg"), new OkHttpResponseCallback<BaseActModel>() {
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
                 Log.d(TAG,bodyStr);
@@ -100,12 +100,12 @@ public class MainActivity extends AppCompatActivity {
 
         MultiFile multiFile = new MultiFile();
         multiFile.setKey("face_images");
-        FileBody fileBody = new FileBody(new File("/storage/emulated/0/Downloads/timg.jpg"));
+        FileBody fileBody = new FileBody(new File("/storage/emulated/0/Huawei/Themes/HWWallpapers/800005091.jpg"));
         multiFile.setFileBody(fileBody);
 
         MultiFile multiFile2 = new MultiFile();
         multiFile2.setKey("face_images");
-        FileBody fileBody2 = new FileBody(new File("/storage/emulated/0/Downloads/timg2.jpg"));
+        FileBody fileBody2 = new FileBody(new File("/storage/emulated/0/Huawei/Themes/HWWallpapers/800005080.jpg"));
         multiFile2.setFileBody(fileBody2);
 
         multiFiles.add(multiFile);
@@ -115,6 +115,24 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
                 Log.d(TAG,bodyStr);
+            }
+
+            @Override
+            public void onFailure(Call call, IOException e) {
+                super.onFailure(call, e);
+                Log.d(TAG,"======onFailure====="+e.getMessage());
+            }
+
+            @Override
+            public void onTimeOut() {
+                super.onTimeOut();
+                Log.d(TAG,"=====onTimeOut====");
+            }
+
+            @Override
+            public void onConnectFail() {
+                super.onConnectFail();
+                Log.d(TAG,"======connectFail======");
             }
         });
 

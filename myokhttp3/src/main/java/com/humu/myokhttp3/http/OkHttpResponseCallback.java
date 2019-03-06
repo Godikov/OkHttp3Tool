@@ -2,8 +2,6 @@ package com.humu.myokhttp3.http;
 
 import android.os.Handler;
 import android.os.Looper;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.humu.myokhttp3.utils.JsonUtil;
 
@@ -51,11 +49,11 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     @Override
     public void onFailure(final Call call, final IOException e) {
-        if(e.getCause().equals(SocketTimeoutException.class)){
+        if(e instanceof SocketTimeoutException){
             //连接超时异常
             onTimeOut();
         }
-        if(e.getCause().equals(ConnectException.class)){
+        if(e instanceof ConnectException){
             //连接异常
             onConnectFail();
         }
