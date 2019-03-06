@@ -2,6 +2,8 @@ package com.humu.myokhttp3.http;
 
 import android.text.TextUtils;
 
+import java.util.concurrent.TimeUnit;
+
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 
@@ -45,7 +47,10 @@ public class OkHttpUtil {
     }
 
     private final void post(OkHttpParams params,OkHttpResponseCallback callback){
-        OkHttpClient okHttpClient = new OkHttpClient();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20,TimeUnit.SECONDS)
+                .build();
         if(!TextUtils.isEmpty(params.getUrl())){
             Request request = new Request.Builder()
                     .url(params.getUrl())
@@ -58,7 +63,10 @@ public class OkHttpUtil {
     }
 
     private final void get(OkHttpParams params,OkHttpResponseCallback callback){
-        OkHttpClient okHttpClient = new OkHttpClient();
+        OkHttpClient okHttpClient = new OkHttpClient.Builder()
+                .connectTimeout(10, TimeUnit.SECONDS)
+                .readTimeout(20,TimeUnit.SECONDS)
+                .build();
         if(!TextUtils.isEmpty(params.getUriBuilderUrl())){
             Request request = new Request.Builder()
                     .url(params.getUriBuilderUrl())
