@@ -13,7 +13,7 @@ import okhttp3.Request;
 
 public class OkHttpUtil {
 
-    private static OkHttpUtil mInstance;
+    private volatile static OkHttpUtil mInstance;
 
     public static OkHttpUtil getInstance()
     {

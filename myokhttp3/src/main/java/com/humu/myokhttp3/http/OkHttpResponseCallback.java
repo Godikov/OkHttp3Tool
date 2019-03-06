@@ -50,11 +50,11 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     @Override
     public void onFailure(final Call call, final IOException e) {
-        if(e instanceof SocketTimeoutException){
+        if(e.getCause().equals(SocketTimeoutException.class)){
             //连接超时异常
             onTimeOut();
         }
-        if(e instanceof ConnectException){
+        if(e.getCause().equals(ConnectException.class)){
             //连接异常
             onConnectFail();
         }
