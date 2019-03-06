@@ -2,12 +2,15 @@ package com.humu.myokhttp3.http;
 
 import android.os.Handler;
 import android.os.Looper;
+import android.widget.Toast;
 
 import com.humu.myokhttp3.utils.JsonUtil;
 
 import java.io.IOException;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.Type;
+import java.net.ConnectException;
+import java.net.SocketTimeoutException;
 
 import okhttp3.Call;
 import okhttp3.Callback;
@@ -47,6 +50,14 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     @Override
     public void onFailure(final Call call, final IOException e) {
+        if(e instanceof SocketTimeoutException){
+            //连接超时异常
+            onTimeOut();
+        }
+        if(e instanceof ConnectException){
+            //连接异常
+            onConnectFail();
+        }
         onFinish();
     }
 
@@ -97,6 +108,14 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     public void onFinish(){
         //自定义接口调完之后的逻辑,无论是失败还是成功都会最终执行。
+    }
+
+    public void onTimeOut(){
+        //连接超时
+    }
+
+    public void onConnectFail(){
+        //连接异常
     }
 
 }

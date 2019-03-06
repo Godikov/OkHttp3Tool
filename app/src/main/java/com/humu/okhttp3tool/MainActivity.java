@@ -40,6 +40,18 @@ public class MainActivity extends AppCompatActivity {
             }
 
             @Override
+            public void onTimeOut() {
+                super.onTimeOut();
+                //连接超时
+            }
+
+            @Override
+            public void onConnectFail() {
+                super.onConnectFail();
+                //连接失败
+            }
+
+            @Override
             public void onFailure(Call call, IOException e) {
                 super.onFailure(call, e);
                 //接口请求失败
