@@ -28,7 +28,7 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     public Class<T> clazz;
 
-    public Type getType(Class<?> clazz, int index) {
+    private Type getType(Class<?> clazz, int index) {
         Type type = null;
         Type[] types = this.getType(clazz);
         if(types != null && index >= 0 && types.length > index) {
