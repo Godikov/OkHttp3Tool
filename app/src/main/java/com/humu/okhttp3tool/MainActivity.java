@@ -42,24 +42,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onTimeOut() {
                 super.onTimeOut();
+                Log.d(TAG,"onTimeOut");
                 //连接超时
             }
 
             @Override
             public void onConnectFail() {
                 super.onConnectFail();
+                Log.d(TAG,"onConnectFail");
                 //连接失败
             }
 
             @Override
             public void onFailure(Call call, IOException e) {
                 super.onFailure(call, e);
+                Log.d(TAG,"onFailure");
                 //接口请求失败
+            }
+
+            @Override
+            public void onFormatError() {
+                super.onFormatError();
+                //接口返回数据格式错误（非json格式数据时回调）
+                Log.d(TAG,"onFormatError");
             }
 
             @Override
             public void onFinish() {
                 super.onFinish();
+                Log.d(TAG,"onFinish");
                 //接口请求结束回调
             }
         });
