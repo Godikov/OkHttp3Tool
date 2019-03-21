@@ -19,21 +19,24 @@ import java.util.Set;
 
 public class OKHttp3Tool {
 
-    private static OkHttpParams params;
     private boolean isPostRequest = true;
     private Map<String,String> mapParams = new HashMap<>();
     private Map<String,File> fileMap = new HashMap<>();
     private List<MultiFile> multiFiles = new ArrayList<>();
 
     private String url = "";
+    private OkHttpParams params;
 
     /**
      * 创建实例
      * @return
      */
     public static OKHttp3Tool getInstance(){
-        params = new OkHttpParams();
         return new OKHttp3Tool();
+    }
+
+    public OKHttp3Tool(){
+        params = new OkHttpParams();
     }
 
     /**
