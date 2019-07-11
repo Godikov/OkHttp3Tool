@@ -18,7 +18,7 @@ OkHttp3请求工具类。
     
     dependencies {
         ...
-        implementation 'com.github.Godikov:OkHttp3Tool:v1.1.2'
+        implementation 'com.github.Godikov:OkHttp3Tool:v1.1.4'
     }
     
     
@@ -43,7 +43,7 @@ OkHttp3请求工具类。
             OkHttpUtil.getInstance().request(params,callback);
         }
         
-获取回调结果示例:
+获取回调结果示例(所有回调方法都在主线程回调):
 
     
         OkHttpInterface.postTest("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback<BaseActModel>() {
