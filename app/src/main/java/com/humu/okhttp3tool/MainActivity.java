@@ -8,8 +8,10 @@ import android.view.View;
 import com.humu.myokhttp3.bean.FileBody;
 import com.humu.myokhttp3.bean.MultiFile;
 import com.humu.myokhttp3.http.OkHttpResponseCallback;
+import com.humu.myokhttp3.http2.OkHttpResponseCallback2;
 import com.humu.okhttp3tool.http.OkHttpInterface;
 import com.humu.okhttp3tool.model.BaseActModel;
+import com.humu.okhttp3tool.model.CommonActModel;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,6 +32,14 @@ public class MainActivity extends AppCompatActivity {
 
     public void postTest(View view) {
 
+        OkHttpInterface.postTest2("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback2<CommonActModel>() {
+            @Override
+            protected void onSuccess() {
+                Log.d(TAG,actModel.getReason());
+            }
+        });
+
+/*
         OkHttpInterface.postTest("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback<BaseActModel>() {
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
@@ -74,25 +84,57 @@ public class MainActivity extends AppCompatActivity {
                 //接口请求结束回调
             }
         });
+*/
     }
 
     public void getTest(View view) {
-        OkHttpInterface.getTest("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback<BaseActModel>() {
+/*        OkHttpInterface.getTest("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback<BaseActModel>() {
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
                 Log.d(TAG,bodyStr);
+            }
+        });*/
+
+        OkHttpInterface.getTest2("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback2<CommonActModel>() {
+            @Override
+            protected void onSuccess() {
+                Log.d(TAG,actModel.getReason());
             }
         });
 
     }
 
     public void postFileTest(View view) {
+/*
         OkHttpInterface.postFileTest("frontFile", new File("/storage/emulated/0/Huawei/Themes/HWWallpapers/800003362.jpg"), new OkHttpResponseCallback<BaseActModel>() {
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
                 Log.d(TAG,bodyStr);
             }
         });
+*/
+
+        MultiFile multiFile = new MultiFile();
+        multiFile.setKey("face_images");
+        FileBody fileBody = new FileBody(new File("/storage/emulated/0/Huawei/Themes/HWWallpapers/800003362.jpg"));
+        multiFile.setFileBody(fileBody);
+
+        List<MultiFile> multiFiles = new ArrayList<>();
+        multiFiles.add(multiFile);
+        multiFiles.add(multiFile);
+        OkHttpInterface.postFiles(multiFiles, new OkHttpResponseCallback2<BaseActModel>() {
+            @Override
+            protected void onSuccess() {
+                Log.d("postFile",bodyStr);
+            }
+
+            @Override
+            protected void onFileNotFound() {
+                super.onFileNotFound();
+                Log.d("postFile","文件不存在");
+            }
+        });
+
     }
 
     public void postFilesTest(View view) {

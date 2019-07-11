@@ -49,15 +49,32 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     @Override
     public void onFailure(final Call call, final IOException e) {
-        if(e instanceof SocketTimeoutException){
-            //连接超时异常
-            onTimeOut();
+        if(isMainLooper()){
+            if(e instanceof SocketTimeoutException){
+                //连接超时异常
+                onTimeOut();
+            }
+            if(e instanceof ConnectException){
+                //连接异常
+                onConnectFail();
+            }
+            onFinish();
+        }else{
+            handler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if(e instanceof SocketTimeoutException){
+                        //连接超时异常
+                        onTimeOut();
+                    }
+                    if(e instanceof ConnectException){
+                        //连接异常
+                        onConnectFail();
+                    }
+                    onFinish();
+                }
+            });
         }
-        if(e instanceof ConnectException){
-            //连接异常
-            onConnectFail();
-        }
-        onFinish();
     }
 
     @Override
