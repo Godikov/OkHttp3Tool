@@ -49,7 +49,9 @@ public class OkHttpUtil {
     private final void post(OkHttpParams params,OkHttpResponseCallback callback){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(20,TimeUnit.SECONDS)
                 .readTimeout(20,TimeUnit.SECONDS)
+                .retryOnConnectionFailure(false)
                 .build();
         if(!TextUtils.isEmpty(params.getUrl())){
             Request request = new Request.Builder()
@@ -65,7 +67,9 @@ public class OkHttpUtil {
     private final void get(OkHttpParams params,OkHttpResponseCallback callback){
         OkHttpClient okHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(10, TimeUnit.SECONDS)
+                .writeTimeout(20,TimeUnit.SECONDS)
                 .readTimeout(20,TimeUnit.SECONDS)
+                .retryOnConnectionFailure(false)
                 .build();
         if(!TextUtils.isEmpty(params.getUriBuilderUrl())){
             Request request = new Request.Builder()

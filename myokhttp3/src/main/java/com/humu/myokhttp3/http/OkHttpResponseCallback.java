@@ -24,7 +24,7 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     private Handler handler = new Handler(Looper.getMainLooper());
 
-    public Class<T> clazz;
+    private Class<T> clazz;
 
     private Type getType(Class<?> clazz, int index) {
         Type type = null;
@@ -79,40 +79,55 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
 
     @Override
     public void onResponse(Call call, Response response) throws IOException {
-        final String bodyStr = response.body().string();
-        Type type = this.getType(this.getClass(), 0);
-        if(type instanceof Class) {
-            this.clazz = (Class)type;
-        }
-        if(JsonUtil.isJson(bodyStr)){
-            final T model = parseActModel(bodyStr,this.clazz);
-            if(this.isMainLooper()){
-                //此处可以做接口请求成功的公共处理，如进度条消失等。
-                //bodyStr:json字符串，方便打印
-                //model：json转对象之后的对象，方便对数据操作
-                onSuccess(bodyStr,model);
-                onFinish();
+        if(response.isSuccessful()){
+            final String bodyStr = response.body().string();
+            Type type = this.getType(this.getClass(), 0);
+            if(type instanceof Class) {
+                this.clazz = (Class)type;
+            }
+            if(JsonUtil.isJson(bodyStr)){
+                final T model = parseActModel(bodyStr,this.clazz);
+                if(this.isMainLooper()){
+                    //此处可以做接口请求成功的公共处理，如进度条消失等。
+                    //bodyStr:json字符串，方便打印
+                    //model：json转对象之后的对象，方便对数据操作
+                    onSuccess(bodyStr,model);
+                    onFinish();
+                }else{
+                    this.handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            //此处可以做接口请求成功的公共处理，如进度条消失等。
+                            OkHttpResponseCallback.this.onSuccess(bodyStr,model);
+                            onFinish();
+                        }
+                    });
+                }
             }else{
-                this.handler.post(new Runnable() {
-                    @Override
-                    public void run() {
-                        //此处可以做接口请求成功的公共处理，如进度条消失等。
-                        OkHttpResponseCallback.this.onSuccess(bodyStr,model);
-                        onFinish();
-                    }
-                });
+                //非json格式数据
+                //回调格式错误方法
+                if(this.isMainLooper()){
+                    onFormatError();
+                    onFinish();
+                }else{
+                    this.handler.post(new Runnable() {
+                        @Override
+                        public void run() {
+                            onFormatError();
+                            onFinish();
+                        }
+                    });
+                }
             }
         }else{
-            //非json格式数据
-            //回调格式错误方法
             if(this.isMainLooper()){
-                onFormatError();
+                onConnectFail();
                 onFinish();
             }else{
                 this.handler.post(new Runnable() {
                     @Override
                     public void run() {
-                        onFormatError();
+                        onConnectFail();
                         onFinish();
                     }
                 });

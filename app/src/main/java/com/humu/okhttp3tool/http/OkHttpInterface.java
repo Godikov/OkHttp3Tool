@@ -2,11 +2,10 @@ package com.humu.okhttp3tool.http;
 
 import com.humu.myokhttp3.bean.MultiFile;
 import com.humu.myokhttp3.http.OKHttp3Tool;
+import com.humu.myokhttp3.http.OkHttpParams;
 import com.humu.myokhttp3.http.OkHttpResponseCallback;
-import com.humu.myokhttp3.http2.OkHttp3Tool2;
-import com.humu.myokhttp3.http2.OkHttpResponseCallback2;
+import com.humu.myokhttp3.http.OkHttpUtil;
 import com.humu.okhttp3tool.model.BaseActModel;
-import com.humu.okhttp3tool.model.CommonActModel;
 
 import java.io.File;
 import java.util.List;
@@ -24,21 +23,23 @@ public class OkHttpInterface {
 
     //post请求测试
     public static void postTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
+/*
         OKHttp3Tool.getInstance()
                 .url(TEST_URL)
                 .add("key",appKey)
                 .add("type",type)
                 .send(callback);
-/*        OkHttpParams params = new OkHttpParams();
+*/
+        OkHttpParams params = new OkHttpParams();
         params.setUrl(TEST_URL);
         params.add("key",appKey);
         params.add("type",type);
-        OkHttpUtil.getInstance().request(params,callback);*/
+        OkHttpUtil.getInstance().request(params,callback);
     }
 
-    public static void postTest2(String appKey,String type,OkHttpResponseCallback2<CommonActModel> callback2){
+/*    public static void postTest2(String appKey,String type,OkHttpResponseCallback2<CommonActModel> callback2){
         OkHttp3Tool2.getInstance().url(TEST_URL).post().add("key",appKey).add("type",type).send(callback2);
-    }
+    }*/
 
     //get请求测试
     public static void getTest(String appKey, String type, OkHttpResponseCallback<BaseActModel> callback){
@@ -53,9 +54,9 @@ public class OkHttpInterface {
         OkHttpUtil.getInstance().request(params,callback);*/
     }
 
-    public static void getTest2(String appKey, String type, OkHttpResponseCallback2<CommonActModel> listener){
+/*    public static void getTest2(String appKey, String type, OkHttpResponseCallback2<CommonActModel> listener){
         OkHttp3Tool2.getInstance().url(TEST_URL).get().add("key",appKey).add("type",type).send(listener);
-    }
+    }*/
 
 
     //文件上传测试
@@ -73,7 +74,7 @@ public class OkHttpInterface {
         OkHttpUtil.getInstance().request(params,callback);*/
     }
 
-    public static void postFile(MultiFile multiFile,OkHttpResponseCallback2<BaseActModel> callback2){
+/*    public static void postFile(MultiFile multiFile,OkHttpResponseCallback2<BaseActModel> callback2){
         OkHttp3Tool2.getInstance()
                 .url("https://api.tchcn.com:31013/face/searchUserByFaceImages")
                 .putFile(multiFile)
@@ -85,7 +86,7 @@ public class OkHttpInterface {
                 .url("https://api.tchcn.com:31013/face/searchUserByFaceImages")
                 .putFiles(multiFiles)
                 .send(callback2);
-    }
+    }*/
 
     //文件列表上传测试
     public static void postFiles(List<MultiFile> files, OkHttpResponseCallback<BaseActModel> callback){
