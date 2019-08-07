@@ -29,14 +29,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void postTest(View view) {
-
-/*        OkHttpInterface.postTest2("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback2<CommonActModel>() {
-            @Override
-            protected void onSuccess() {
-                Log.d(TAG,actModel.getReason());
-            }
-        });*/
-
         OkHttpInterface.postTest("c40cd8f68b25f2930319130e567e1a16", "", new OkHttpResponseCallback<BaseActModel>() {
             @Override
             public void onSuccess(String bodyStr, BaseActModel actModel) {
@@ -99,28 +91,6 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG,bodyStr);
             }
         });
-
-/*        MultiFile multiFile = new MultiFile();
-        multiFile.setKey("face_images");
-        FileBody fileBody = new FileBody(new File("/storage/emulated/0/Huawei/Themes/HWWallpapers/800003362.jpg"));
-        multiFile.setFileBody(fileBody);
-
-        List<MultiFile> multiFiles = new ArrayList<>();
-        multiFiles.add(multiFile);
-        multiFiles.add(multiFile);
-        OkHttpInterface.postFiles(multiFiles, new OkHttpResponseCallback2<BaseActModel>() {
-            @Override
-            protected void onSuccess() {
-                Log.d("postFile",bodyStr);
-            }
-
-            @Override
-            protected void onFileNotFound() {
-                super.onFileNotFound();
-                Log.d("postFile","文件不存在");
-            }
-        });*/
-
     }
 
     public void postFilesTest(View view) {

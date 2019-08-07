@@ -51,7 +51,7 @@ public class OkHttpUtil {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(20,TimeUnit.SECONDS)
                 .readTimeout(20,TimeUnit.SECONDS)
-                .retryOnConnectionFailure(false)
+                .retryOnConnectionFailure(false) //连接失败后不重连
                 .build();
         if(!TextUtils.isEmpty(params.getUrl())){
             Request request = new Request.Builder()
@@ -69,7 +69,7 @@ public class OkHttpUtil {
                 .connectTimeout(10, TimeUnit.SECONDS)
                 .writeTimeout(20,TimeUnit.SECONDS)
                 .readTimeout(20,TimeUnit.SECONDS)
-                .retryOnConnectionFailure(false)
+                .retryOnConnectionFailure(false) //连接失败后不重连
                 .build();
         if(!TextUtils.isEmpty(params.getUriBuilderUrl())){
             Request request = new Request.Builder()

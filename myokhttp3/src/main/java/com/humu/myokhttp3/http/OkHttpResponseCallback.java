@@ -88,7 +88,6 @@ public abstract class OkHttpResponseCallback<T> implements Callback {
             if(JsonUtil.isJson(bodyStr)){
                 final T model = parseActModel(bodyStr,this.clazz);
                 if(this.isMainLooper()){
-                    //此处可以做接口请求成功的公共处理，如进度条消失等。
                     //bodyStr:json字符串，方便打印
                     //model：json转对象之后的对象，方便对数据操作
                     onSuccess(bodyStr,model);
