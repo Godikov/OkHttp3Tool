@@ -18,7 +18,7 @@ OkHttp3请求工具类。
     
     dependencies {
         ...
-        implementation 'com.github.Godikov:OkHttp3Tool:v1.1.4'
+        implementation 'com.github.Godikov:OkHttp3Tool:v1.1.5'
     }
     
     
